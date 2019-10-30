@@ -58,7 +58,7 @@
   $f(x)=mx+b$, or $ax_1+bx_2+c=0$\\
   \begin{exercise}
   What is the equation for the line in the picture?
-  \end{exercise} 
+  \end{exercise}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -91,7 +91,7 @@
     1, & \text{if $Wx+b \geq 0$}.\\
     0, & \text{if $Wx+b < 0$}.
   \end{cases}
-  $  
+  $
 \end{frame}
 
 \begin{frame}[fragile]
@@ -110,7 +110,7 @@
     1, & \text{if $Wx+b \geq 0$}.\\
     0, & \text{if $Wx+b < 0$}.
   \end{cases}
-  $  
+  $
 \end{frame}
 
 \begin{frame}[fragile]
@@ -138,14 +138,14 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Univerity}
+  \frametitle{University}
   \includegraphics[scale=0.4]{img/uni_data_2}\\
   \vspace{3mm}
   How do we find the line between the green and red points?
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Univerity}
+  \frametitle{University}
   Let's start with a simple example. The computer will draw a random line.\\
   \vspace{3mm}
   \includegraphics[scale=0.4]{img/uni_data_3}\\
@@ -155,7 +155,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Univerity}
+  \frametitle{Perceptron Algorithm}
   For each misclassified point, we need the line to come closer to the point!\\
   \vspace{3mm}
   Algorithm:\\
@@ -173,14 +173,32 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Univerity}
+  \frametitle{Perceptron Algorithm}
   After repeating the algorithm for a 1000 times, we have the following result:\\
   \vspace{3mm}
   \includegraphics[scale=0.4]{img/uni_data_4}
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{University}
+  \frametitle{Perceptron Algorithm}
+  It is your turn!
+  \begin{exercise}
+  Download the jupyter notebook xyz and implement the algorithm
+  \end{exercise}
+  \verb|git clone ...|
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{CPU vs GPU}
+  \begin{exercise}
+  Why is a deep learning training process much faster on a GPU compared to a CPU?
+  \end{exercise}
+  \vspace{3mm}
+  \includegraphics[scale=0.4]{img/cpu_gpu}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Perceptron Algorithm}
   Now we know how to find a line. But if the solution is a curve, we need to adapt our
   algorithm. For that we are going to introduce the error function. With the error
   function, we have an idea how bad/good our line is.\\
@@ -190,7 +208,7 @@
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Univerity}
+  \frametitle{Perceptron Algorithm}
   What could be the error function in the following picture? Could it be the number
   of misclassified points?\\
   \vspace{3mm}
@@ -205,3 +223,164 @@
   which is continuous.
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Continuous vs Discrete}
+  \vspace{3mm}
+  \includegraphics[scale=0.4]{img/uni_data_5}\\
+  \vspace{3mm}
+  \begin{itemize}
+  \item Discrete: Red: rejected, Green: accepted
+  \item Continuous: Probability if the student is accepted
+  \end{itemize}
+  \begin{exercise}
+  What is the probability if the point is on the line?
+  \end{exercise}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Sigmoid Function}
+  \includegraphics[scale=0.4]{img/sigmoid}\\
+  \vspace{3mm}
+  $
+  \sigma(x) = \frac{1}{1+e^{-x}}
+  $
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Sigmoid Function}
+  \includegraphics[scale=0.18]{img/step_sigmoid}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Multi Class Classification}
+  At the moment we have only 2 classes:
+  \begin{itemize}
+  \item accepted
+  \item rejected
+  \end{itemize}
+  What if we have more classes? Detecting an animal on a picture.\\
+  \includegraphics[scale=0.18]{img/beaver}\\
+  Is it a beaver, duck or walrus?
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Softmax}
+  Linear Function Scores: $Z_1, Z_2, \hdots, Z_n$\\
+  \vspace{3mm}
+  \begin{displaymath}
+  P(class\,i) = \frac{e^{Z_i}}{e^{Z_1}+e^{Z_2}+\hdots+e^{Z_n}}
+  \end{displaymath}
+  \begin{exercise}
+  The following scores are given:
+  \begin{itemize}
+  \item Duck 2
+  \item Beaver 1
+  \item Walrus 0
+  \end{itemize}
+  What are the probabilities?
+  \end{exercise}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{One Hot Encoding}
+  All algorithms are numerical. This means the input must be numbers:\\
+  \begin{itemize}
+  \item accepted: 1
+  \item rejected: 0
+  \end{itemize}
+  What if we have more classes?
+
+  \vspace{5mm}
+
+  \begin{tabular}{l|l|l|l}
+  Animal & Duck & Beaver & Walrus\\
+  \hline
+  Duck & 1 & 0 & 0\\
+  Walrus & 0 & 0 & 1\\
+  Beaver & 0 & 1 & 0\\
+  \hline
+  \end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Maximum Liklihood}
+  Evaluation of the model\\
+  \vspace{3mm}
+  \includegraphics[scale=0.3]{img/maximum_liklihood}\\
+  \vspace{3mm}
+  The higher the number, the better the model!
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Cross Entropy}
+  Multiplication is bad, Sum is good!\\
+
+  \vspace{3mm}
+  $0.6 \cdot 0.2 \cdot 0.1 * \cdot 0.7 = 0.0084$\\
+  $ln(0.6) + ln(0.2) + ln(0.1) + ln(0.7)$
+  $-0.51 + -1.61 + -2.3 + -0.36$\\
+
+  \vspace{3mm}
+  The logarithm of a number between 0 and 1 is negative\\
+  $-ln(0.6) - ln(0.2) - ln(0.1) - ln(0.7)$\\
+  $-0.51 - 1.61 - 2.3 - 0.36$\\
+
+  \vspace{3mm}
+  \includegraphics[scale=0.3]{img/crossentropy}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Error Function}
+  $y = 1$ (Blue Point)\\
+  $P(blue) = \hat{y}$\\
+  $Error = -ln(\hat{y})$\\
+
+  \vspace{3mm}
+
+  $y = 0$ (Red Point)\\
+  $P(red) = 1 - P(blue) = 1 - \hat{y}$\\
+  $Error = -ln(1 - \hat{y})$\\
+
+  \vspace{3mm}
+
+  $Error = -(1-y)(ln(1-\hat{y})) - y ln(\hat{y})$
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Minimize Error Function}
+  Formula
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Gradient Descent Algorithm}
+  \begin{enumerate}
+  \item Start with random weights\\
+  $w_1, w_2, \hdots, w_n, b$
+  \item For every point ($x_1, x_2, \hdots, x_n$):\\
+  \verb|   | For $i=1..n$:\\
+  \verb|      | Update $w_i = w_i - \alpha(\hat{y}-y)x_i$\\
+  \verb|      | Update $b = b - \alpha(\hat{y}-y)$
+  \item Repeat until the error is small
+  \end{enumerate}
+
+  \vspace{3mm}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Gradient Desenct Algorithm}
+  It is your turn!
+  \begin{exercise}
+  Download the jupyter notebook xyz and implement the algorithm
+  \end{exercise}
+  \verb|git clone ...|
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Non Linear Models}
+
+
+\end{frame}
